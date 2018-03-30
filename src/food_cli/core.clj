@@ -32,8 +32,6 @@
     (= (count args) 4) (get-food (first args) (second args) (nth args 2) (nth args 3))))
 
 
-
-
 (defn -main [& args]
   ;(println "hier ist ein text" args)
    (let [url (get-the-right-url args)
