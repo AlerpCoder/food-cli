@@ -1,4 +1,5 @@
 (ns food-cli.core
+  (:gen-class)
   (:require [clj-time.core :as time]
             [clj-time.local :as local]
             [clj-http.client :as client]
@@ -34,7 +35,15 @@
 
 
 (defn -main [& args]
+  ;(println "hier ist ein text" args)
    (let [url (get-the-right-url args)
          response (client/get url)
          food (json/parse-string (:body response))]
-     (map #(get % "name") (get (get food 0) "menu"))))
+     (println  (map #(get % "name") (get (get food 0) "menu")))))
+  
+  
+  
+  
+  
+      
+
