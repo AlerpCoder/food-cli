@@ -24,7 +24,6 @@
     (testing "the wrong date format"
       (not (= (date-formatter (time/date-time 2018 01 01)) "01/01/2018")))))
    
-
 (deftest get-the-right-url-test
   (testing "get"
     (testing "the right url"
@@ -34,9 +33,9 @@
       (is (= (get-the-right-url ["erba"]) (str "https://mg-server.ddns.net/app/api/v1.1/food/ERBA/" (date-formatter (local/local-now)))))
       (is (= (get-the-right-url []) (str "https://mg-server.ddns.net/app/api/v1.1/food/ERBA/" (date-formatter (local/local-now))))))
     
-   (testing "wrong url"  
-     (not (= (get-the-right-url ["feki" "01" "01" "2018"]) "https://mg-server.ddns.net/app/api/v1.1/food/FEKI/01/01/2018"))
-     (is (= (get-the-right-url ["feki" "01" "01"]) "Please try again!")))))
+    (testing "wrong url"  
+      (not (= (get-the-right-url ["feki" "01" "01" "2018"]) "https://mg-server.ddns.net/app/api/v1.1/food/FEKI/01/01/2018"))
+      (is (= (get-the-right-url ["feki" "01" "01"]) "Please try again!")))))
       
       
             

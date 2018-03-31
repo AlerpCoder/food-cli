@@ -4,30 +4,31 @@
             [clj-time.local :as local]
             [clj-http.client :as client]
             [clj-json.core :as json])
- (:use [slingshot.slingshot :only [throw+ try+]]))
+  (:use [slingshot.slingshot :only [throw+ try+]]))
 
 (def url "https://mg-server.ddns.net/app/api/v1.1/food/")
 (def locations #{"ERBA" "Erba" "erba" "FEKI" "Feki" "feki"})
 
 
 (defn date-formatter [curr-date]
- (let [day (time/day curr-date)        
-       month (time/month curr-date)
-       year (time/year curr-date)]
-  (format "%4d/%02d/%02d" year month day)))
+  (println curr-date)
+  (let [day (time/day curr-date)
+        month (time/month curr-date)
+        year (time/year curr-date)]
+    (format "%4d/%02d/%02d" year month day)))
     
 
 (defn get-location [loc]
-  (if (get locations loc) (clojure.string/upper-case loc) (throw+ (Exception. "Please use feki or erba as a faculty"))))
+  (if (get locations loc) (clojure.string/upper-case loc) (throw (Exception. "Please use feki or erba as a faculty"))))
 
 (defn right-date-format? [args]
-  (let [[year month day] args]
-      (time/date-time year month day)
+  (let [[year month day] args
+        date {:year (read-string year)
+              :month (read-string month)
+              :day (read-string day)}]
+    (time/date-time (:year date) (:month date) (:day date))
     (format "%s/%s/%s"  year month day)))
-;    (catch Exception e)))
-;      (println "Please enter a valid date in the right order Day Month Year"))
-        
-  
+   
 
 (defn get-food 
   ([location]  (str url (get-location location) "/" (date-formatter (local/local-now))))
@@ -46,15 +47,13 @@
   (println args))
 
 (defn -main [& args]
-  (try
-   (let [url (get-the-right-url args)
-         response (client/get url)
-         food (json/parse-string (:body response))]
-     (pretty-print  (map #(get % "name") (get (get food 0) "menu"))))))
+ (try
+  (let [url (get-the-right-url args)
+        response (client/get url)
+        food (json/parse-string (:body response))]
+    (pretty-print  (map #(get % "name") (get (get food 0) "menu"))))
+  (catch Exception e
+    (println (.getMessage e)))))
   
   
-  
-  
-  
-      
 
