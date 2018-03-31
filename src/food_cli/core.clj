@@ -11,7 +11,6 @@
 
 
 (defn date-formatter [curr-date]
-  (println curr-date)
   (let [day (time/day curr-date)
         month (time/month curr-date)
         year (time/year curr-date)]
