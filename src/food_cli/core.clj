@@ -6,7 +6,6 @@
             [clj-json.core :as json]))
 
 (def url "https://mg-server.ddns.net/app/api/v1.1/food/")
-(def to-date "2018/05/01")
 (def locations #{"ERBA" "Erba" "erba" "FEKI" "Feki" "feki"})
 
 
