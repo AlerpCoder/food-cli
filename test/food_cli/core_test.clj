@@ -37,7 +37,7 @@
     
     (testing "wrong url"
       (not (= (get-the-right-url ["feki" "01" "01" "2018"]) "https://mg-server.ddns.net/app/api/v1.1/food/FEKI/01/01/2018"))
-      (not (= (get-the right-url ["blubb"]) nil)))))
+     )))
             
       
     
