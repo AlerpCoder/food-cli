@@ -43,7 +43,7 @@
     :default "Please try again!"))
 
 (defn pretty-print [args]
-  (println args))
+  (if (empty? args) (println "on your questioned date is no mensa food please try another day") (println args)))
 
 (defn -main [& args]
  (try
