@@ -35,7 +35,12 @@
     
     (testing "wrong url"  
       (not (= (get-the-right-url ["feki" "01" "01" "2018"]) "https://mg-server.ddns.net/app/api/v1.1/food/FEKI/01/01/2018"))
-      (is (= (get-the-right-url ["feki" "01" "01"]) "Please try again!")))))
+      (is (= (get-the-right-url ["feki" "01" "01"]) "Please try again!")))
+    (testing "edge cases"
+      (is (= (get-the-right-url ["bla" "blubb" "blubber" "blabla"] "Please try again!")))
+      (is (= (get-the-right-url ["feki" "15" "02" "-1"]) "Please use only positive Integers"))
+      (is (= (get-the-right-url ["feki" "2147483648" "02" "2018"] "Please use our standard for dates")))
+      (is (= (get-the-right-url ["feki" "1" "02" "2018"] "Please use our standard for dates"))))))
       
       
             

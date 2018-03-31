@@ -1,4 +1,4 @@
-(defproject food-cli "0.1.0-SNAPSHOT"
+(defproject food-cli "0.2.0-SNAPSHOT"
   :description "Get the mensa food from the university of bamberg"
   :url "https://github.com/alerpcoder"
   :license {:name "Eclipse Public License"
