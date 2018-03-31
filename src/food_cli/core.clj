@@ -17,7 +17,7 @@
     
 
 (defn get-location [loc]
-  (if (get locations loc) (clojure.string/upper-case loc) ""))
+  (if (get locations loc) (clojure.string/upper-case loc) (throw (Exception. "Please use feki or erba as a faculty"))))
 
 (defn get-food 
   ([location]  (str url (get-location location) "/" (date-formatter (local/local-now))))
@@ -28,11 +28,11 @@
   (cond             
     (empty? args) (get-food "erba")
     (= (count args) 1) (get-food (first args))
-    (= (count args) 4) (get-food (first args) (second args) (nth args 2) (nth args 3))))
+    (= (count args) 4) (get-food (first args) (second args) (nth args 2) (nth args 3))
+    :default "Please try again!"))
 
 
 (defn -main [& args]
-  ;(println "hier ist ein text" args)
    (let [url (get-the-right-url args)
          response (client/get url)
          food (json/parse-string (:body response))]
