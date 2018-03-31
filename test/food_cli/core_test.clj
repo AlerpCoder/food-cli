@@ -5,14 +5,14 @@
             [clj-time.local :as local]))
 
 
-(deftest get-loc-test
+(deftest get-location-test
   (testing "get the location"
     (testing "if the String is right"
       (is (= (get-location "erba") "ERBA"))
       (is (= (get-location "feki") "FEKI")))
     
     (testing "if the String is wrong" 
-       (is (thrown? Exception  (get-location "notWhatIWant"))))))
+       (is (thrown? Exception (get-location "notWhatIWant"))))))
 
 (deftest date-formatter-test
   (testing "get "
