@@ -17,7 +17,6 @@
     
 
 (defn get-location [loc]
-  "TODO: this needs rework cause i need to use more clojure way exception "
   (if (get locations loc) (clojure.string/upper-case loc) (throw (Exception. "Please use feki or erba as a faculty"))))
 
 (defn get-food 
@@ -30,7 +29,7 @@
     (empty? args) (get-food "erba")
     (= (count args) 1) (get-food (first args))
     (= (count args) 4) (get-food (first args) (second args) (nth args 2) (nth args 3))
-    :default "Please try again, one of the function is called wrong"))
+    :default "Please try again!"))
 
 
 (defn -main [& args]

@@ -6,7 +6,7 @@
 
 
 (deftest get-loc-test
-  (testing "get the right location"
+  (testing "get the location"
     (testing "if the String is right"
       (is (= (get-location "erba") "ERBA"))
       (is (= (get-location "feki") "FEKI")))
@@ -15,13 +15,13 @@
        (is (thrown? Exception  (get-location "notWhatIWant"))))))
 
 (deftest date-formatter-test
-  (testing "get the right date"
+  (testing "get "
     (testing "the date is right"
      (is (= (date-formatter (time/date-time 2018 01 01)) "2018/01/01"))
      (is (= (date-formatter (time/date-time 2018 02 28)) "2018/02/28")))
      
     
-    (testing "get the wrong date format"
+    (testing "the wrong date format"
       (not (= (date-formatter (time/date-time 2018 01 01)) "01/01/2018")))))
    
 
@@ -34,9 +34,9 @@
       (is (= (get-the-right-url ["erba"]) (str "https://mg-server.ddns.net/app/api/v1.1/food/ERBA/" (date-formatter (local/local-now)))))
       (is (= (get-the-right-url []) (str "https://mg-server.ddns.net/app/api/v1.1/food/ERBA/" (date-formatter (local/local-now))))))
     
-    (testing "wrong url"
-      (not (= (get-the-right-url ["feki" "01" "01" "2018"]) "https://mg-server.ddns.net/app/api/v1.1/food/FEKI/01/01/2018"))
-      (is (= (get-the-right-url ["feki" "01" "01"]) "Please try again the one of the function is called wrong")))))
+   (testing "wrong url"  
+     (not (= (get-the-right-url ["feki" "01" "01" "2018"]) "https://mg-server.ddns.net/app/api/v1.1/food/FEKI/01/01/2018"))
+     (is (= (get-the-right-url ["feki" "01" "01"]) "Please try again!")))))
       
       
             
