@@ -41,20 +41,9 @@
       (is (thrown? Exception (get-the-right-url ["bla" "blubb" "blubber" "blabla"])))
       (is (thrown? Exception (get-the-right-url ["feki" "15" "02" "-1"])))
       (is (thrown? Exception (get-the-right-url ["feki" "2147483648" "02" "2018"])))
-      (is (thrown? Exception (get-the-right-url ["feki" "1" "02" "2018"]))))))
+      (is (thrown? Exception (get-the-right-url ["feki" "1" "02" "2018"])))
      
-      
-      
-
-(deftest get-food
- )
-            
-      
-    
-    
-    
-    
-    
+      )))
 
   
 

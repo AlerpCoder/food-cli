@@ -54,17 +54,14 @@
 (defn pretty-print [args]
   (if (empty? args) (println "on your questioned date is no mensa food please try another day") (pprint args)))
 
-(defn bloat [args]
-  (args))
-
 (defn -main [& args]
- (try
-  (let [url (get-the-right-url args)
-        response (client/get url)
-        food (json/parse-string (:body response))]
-    (map pretty-print (get (get food 0) "menu")))
-  (catch Exception e
-    (println (.getMessage e)))))
+  (try
+    (let [url (get-the-right-url args)
+          response (client/get url)
+          food (json/parse-string (:body response))]
+      (map pretty-print (get (get food 0) "menu")))
+    (catch Exception e
+      (println (.getMessage e)))))
   
   
 
