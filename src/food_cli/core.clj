@@ -7,7 +7,7 @@
 
 (def url "https://mg-server.ddns.net/app/api/v1.1/food/")
 (def locations #{"ERBA" "Erba" "erba" "FEKI" "Feki" "feki"})
-(def positive-number (Exception. "Please use only postive numbers and numbers under 10 should be have a leading 0 and the numbers shouldnt be greater than 3000"))
+(def positive-number (Exception. "Please use only postive numbers and numbers under 10 should be have a leading 0 and the numbers shouldnt be greater than 2049"))
 
 
 (defn date-formatter [curr-date]
@@ -60,7 +60,7 @@
         food (json/parse-string (:body response))]
     (pretty-print  (map #(get % "name") (get (get food 0) "menu"))))
   (catch Exception e
-    (println (.getMessage e)))))
+    (.getMessage e))))
   
   
 
