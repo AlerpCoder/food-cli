@@ -4,6 +4,7 @@
             [clj-time.local :as local]
             [clj-http.client :as client]
             [clj-json.core :as json]))
+(use 'clojure.pprint)
 
 (def url "https://mg-server.ddns.net/app/api/v1.1/food/")
 (def locations #{"ERBA" "Erba" "erba" "FEKI" "Feki" "feki"})
@@ -51,14 +52,17 @@
     :default "Please try again!"))
 
 (defn pretty-print [args]
-  (if (empty? args) (println "on your questioned date is no mensa food please try another day") (println args)))
+  (if (empty? args) (println "on your questioned date is no mensa food please try another day") (pprint args)))
+
+(defn bloat [args]
+  (args))
 
 (defn -main [& args]
  (try
   (let [url (get-the-right-url args)
         response (client/get url)
         food (json/parse-string (:body response))]
-    (pretty-print  (map #(get % "name") (get (get food 0) "menu"))))
+    (map pretty-print (get (get food 0) "menu")))
   (catch Exception e
     (println (.getMessage e)))))
   
