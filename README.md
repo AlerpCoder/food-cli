@@ -14,4 +14,4 @@ A Clojure library designed to get the current mensa food of the University of Ba
 
 Copyright © 2018 AlerpCoder
 
-Distributed under the Eclipse Public License either version 1.0
+Distributed under the Apache License 2.0
