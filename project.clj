@@ -1,8 +1,8 @@
 (defproject food-cli "0.1.0-SNAPSHOT"
   :description "Get the mensa food from the university of bamberg"
   :url "https://github.com/alerpcoder"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :license {:name "Apache License 2.0"
+            :url "http://www.apache.org/licenses/"}
   :main food-cli.core
   :aot [food-cli.core]
   :dependencies [[org.clojure/clojure "1.8.0"]
