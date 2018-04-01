@@ -60,7 +60,7 @@
         food (json/parse-string (:body response))]
     (pretty-print  (map #(get % "name") (get (get food 0) "menu"))))
   (catch Exception e
-    (.getMessage e))))
+    (println (.getMessage e)))))
   
   
 
