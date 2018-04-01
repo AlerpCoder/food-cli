@@ -37,10 +37,10 @@
       (not (= (get-the-right-url ["feki" "01" "01" "2018"]) "https://mg-server.ddns.net/app/api/v1.1/food/FEKI/01/01/2018"))
       (is (= (get-the-right-url ["feki" "01" "01"]) "Please try again!")))
     (testing "edge cases"
-      (is (= (get-the-right-url ["bla" "blubb" "blubber" "blabla"] "Please try again!")))
-      (is (= (get-the-right-url ["feki" "15" "02" "-1"]) "Please use only positive Integers"))
-      (is (= (get-the-right-url ["feki" "2147483648" "02" "2018"] "Please use our standard for dates")))
-      (is (= (get-the-right-url ["feki" "1" "02" "2018"] "Please use our standard for dates"))))))
+      (is (= (get-the-right-url ["bla" "blubb" "blubber" "blabla"] "Please use feki or erba as a faculty")))
+      (is (= (get-the-right-url ["feki" "15" "02" "-1"]) "Please use only postive numbers and numbers under 10 should be have a leading 0 and the numbers shouldnt be greater than 2049"))
+      (is (= (get-the-right-url ["feki" "2147483648" "02" "2018"] "Please use only postive numbers and numbers under 10 should be have a leading 0 and the numbers shouldnt be greater than 2049")))
+      (is (= (get-the-right-url ["feki" "1" "02" "2018"] "Please use only postive numbers and numbers under 10 should be have a leading 0 and the numbers shouldnt be greater than 2049"))))))
       
       
             

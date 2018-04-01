@@ -3,28 +3,36 @@
   (:require [clj-time.core :as time]
             [clj-time.local :as local]
             [clj-http.client :as client]
-            [clj-json.core :as json])
-  (:use [slingshot.slingshot :only [throw+ try+]]))
+            [clj-json.core :as json]))
 
 (def url "https://mg-server.ddns.net/app/api/v1.1/food/")
 (def locations #{"ERBA" "Erba" "erba" "FEKI" "Feki" "feki"})
+(def positive-number (Exception. "Please use only postive numbers and numbers under 10 should be have a leading 0 and the numbers shouldnt be greater than 3000"))
 
 
 (defn date-formatter [curr-date]
   (let [day (time/day curr-date)
         month (time/month curr-date)
         year (time/year curr-date)]
-    (format "%4d/%02d/%02d" year month day)))
+   (format "%4d/%02d/%02d" year month day)))
     
 
 (defn get-location [loc]
   (if (get locations loc) (clojure.string/upper-case loc) (throw (Exception. "Please use feki or erba as a faculty"))))
 
+(defn to-int [number]
+     (cond 
+       (and (>= (.length number) 2) (<= (.length number) 4)) (try
+                                                               (if  (and (> (read-string number) 0) (< (read-string number) 2050)) (read-string number) (throw (positive-number)))
+                                                               (catch Exception e
+                                                                 (throw positive-number)))
+       :default (throw positive-number)))
+  
 (defn right-date-format? [args]
   (let [[year month day] args
-        date {:year (read-string year)
-              :month (read-string month)
-              :day (read-string day)}]
+        date {:year (to-int year)
+              :month (to-int month)
+              :day (to-int day)}]
     (time/date-time (:year date) (:month date) (:day date))
     (format "%s/%s/%s"  year month day)))
    
